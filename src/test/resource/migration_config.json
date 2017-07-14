@@ -1,0 +1,12 @@
+[
+	{
+		"src": "shop_orders",
+		"dest": "shop_orders",
+		"template": "shop_orders.template"
+	},
+	{
+		"src": "shop_orders",
+		"dest": "shop_orders",
+		"template": "shop_orders.template"
+	}
+]

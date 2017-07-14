@@ -1,0 +1,7 @@
+[
+	{
+		"srcTableName": "shop_orders",
+		"destTableName": "shop_orders",
+		"templateFileName": "shop_orders.ftl"
+	}
+]

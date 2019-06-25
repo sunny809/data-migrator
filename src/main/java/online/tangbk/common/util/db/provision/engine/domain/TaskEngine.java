@@ -34,7 +34,7 @@ public abstract class TaskEngine {
 		return currentTask;
 	}
 
-	private static Connection getConnection(Configuration config) throws ClassNotFoundException, SQLException {
+	protected static Connection getConnection(Configuration config) throws ClassNotFoundException, SQLException {
 		Connection conn = null;
 
 		try {

@@ -1,6 +1,6 @@
 package com.ngit.common.util.data.migrator;
 
-import com.ngit.common.util.config.TableConfigLoader;
+import online.tangbk.common.util.db.provision.config.TableConfigLoader;
 
 /**
  * Hello world!

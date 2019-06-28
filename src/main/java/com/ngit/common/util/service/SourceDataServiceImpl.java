@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import com.ngit.common.util.config.TableConfigLoader;
 import com.ngit.common.util.data.migrator.domain.TableConfigEntity;
+
+import online.tangbk.common.util.db.provision.config.TableConfigLoader;
 
 @Service
 public class SourceDataServiceImpl implements LoadSourceDataService {

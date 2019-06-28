@@ -3,10 +3,12 @@ package online.tangbk.common.util.db.provision.engine.domain;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 
 import lombok.extern.slf4j.Slf4j;
 import online.tangbk.common.util.db.provision.config.Configuration;
+import online.tangbk.common.util.db.provision.exception.ProvisionRuntimeException;
 
 @Slf4j
 public abstract class TaskEngine {
@@ -22,7 +24,16 @@ public abstract class TaskEngine {
 
 	}
 
-	protected boolean checkHistoryTableExists() {
+	protected boolean checkHistoryTableExists() throws ProvisionRuntimeException {
+		String checkSQL = "SELECT table_name FROM information_schema.TABLES WHERE table_name ='provision_history'";
+		try {
+			Statement checkTableStmt = connection.createStatement();
+			checkTableStmt.executeQuery(checkSQL);
+		} catch (SQLException e) {
+			log.error("check table exists error {}", e);
+			throw new ProvisionRuntimeException(e);
+		}
+		
 		return false;
 	}
 

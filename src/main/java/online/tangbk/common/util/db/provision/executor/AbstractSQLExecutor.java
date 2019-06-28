@@ -22,12 +22,14 @@ public abstract class AbstractSQLExecutor {
 	public boolean execute() throws ProvisionRuntimeException {
 		boolean result = false;
 		try {
+			log.debug("trying to execute SQL {}", sql);
 			stmt = conn.createStatement();
 			result = stmt.execute(sql);
 		} catch (SQLException e) {
+			log.error("execute SQL {} find error {}", sql, e);
 			throw new ProvisionRuntimeException(e);
 		}
-
 		return result;
 	}
+
 }

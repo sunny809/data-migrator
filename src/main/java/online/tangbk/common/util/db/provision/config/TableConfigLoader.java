@@ -1,19 +1,18 @@
-package com.ngit.common.util.config;
+package online.tangbk.common.util.db.provision.config;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ngit.common.util.data.migrator.domain.TableConfigEntity;
 
-@Component
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class TableConfigLoader implements ConfigLoader {
 
 	private List<TableConfigEntity> list;
@@ -21,21 +20,17 @@ public class TableConfigLoader implements ConfigLoader {
 	Logger logger = LoggerFactory.getLogger(TableConfigLoader.class);
 
 	@Override
-	public void load() {
-		// System.out.println(ClassLoader.getSystemResource(""));
-		// System.out.println(ClassLoader.getSystemResource("migration_config.json"));
-
-		InputStreamReader bis = new InputStreamReader(ClassLoader.getSystemResourceAsStream("migration_config.json"));
+	public void load(String input) throws IOException {
+		log.debug("input:[{}]", input);
 
 		try {
 			BufferedReader br = new BufferedReader(bis);
 			String jsonString = extractString(br);
 			list = JSONObject.parseArray(jsonString, TableConfigEntity.class);
 			System.out.println(list.toString());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("loading SQL task from configuration file error {}", e);
+
 		}
 
 	}
